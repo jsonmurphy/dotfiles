@@ -1,12 +1,29 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
+  };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs }: {
 
     nixosConfigurations.valhalla = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (import ./configuration.nix)
+        ./configuration.nix
+        ({ pkgs, ... }: {
+            # Let 'nixos-version --json' know about the Git revision
+            # of this flake.
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+        })
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.pedantic = import ./home.nix {
+            inherit nix-doom-emacs builtins;
+          };
+        }
       ];
     };
   };

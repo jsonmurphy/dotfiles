@@ -56,11 +56,11 @@ call plug#end()
 "colorscheme afterglow
 
 " Plugin Config
-let g:ctrlp_root_markers = ['project.clj', 'deps.edn', 'go.mod']
+let g:ctrlp_root_markers = ['project.clj', 'deps.edn', 'go.mod', 'shell.nix']
 let g:ctrlp_show_hidden = 1
 
 let g:rooter_change_directory_for_non_project_files = 'home'
-let g:rooter_patterns = ['go.mod','project.clj', 'deps.edn', '.git/']
+let g:rooter_patterns = ['go.mod', 'project.clj', 'deps.edn', '.git/', 'shell.nix']
 
 let g:neoterm_autoscroll = 1
 

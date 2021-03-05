@@ -20,11 +20,7 @@ in
   # WSL is closer to a container than anything else
   boot.isContainer = true;
 
-
-  # Let 'nixos-version --json' know about the Git revision
-  # of this flake.
-  system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-
+  environment.noXlibs = lib.mkForce false;
   environment.etc.hosts.enable = false;
   environment.etc."resolv.conf".enable = false;
   environment.systemPackages = with pkgs; [ wget neovim git ];
@@ -34,6 +30,8 @@ in
     source-code-pro
     nerdfonts
     font-awesome
+    terminus_font
+    roboto
   ];
 
   networking.dhcpcd.enable = false;
@@ -50,8 +48,6 @@ in
     extraGroups = [ "root" ];
   };
 
-  programs.fish.enable = true;
-
   security.sudo.wheelNeedsPassword = false;
 
   # Disable systemd units that don't make sense on WSL
@@ -66,4 +62,7 @@ in
 
   # Don't allow emergency mode, because we don't have a console.
   systemd.enableEmergencyMode = false;
+
+  services.xserver.enable = true;
+  services.xserver.windowManager.awesome.enable = true;
 }
