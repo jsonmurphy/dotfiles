@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "awesome-freedesktop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1595707508,
+        "narHash": "sha256-JByHFiXHFT/NoBn6pnYAjfua+0KO3CBIwPsZAnhmMWY=",
+        "owner": "lcpz",
+        "repo": "awesome-freedesktop",
+        "rev": "b77dee0250599b2810efadf34f612f32c7ceb556",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lcpz",
+        "repo": "awesome-freedesktop",
+        "type": "github"
+      }
+    },
     "doom-emacs": {
       "flake": false,
       "locked": {
@@ -245,11 +261,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1614535430,
-        "narHash": "sha256-kZwi0CooIOmFrk9eIteYSZIr4a4DVTEYV7UnURs6DSM=",
+        "lastModified": 1614989413,
+        "narHash": "sha256-g503bGSdVhLu2cKR5sHG8XetLFrVUzAL3+mrnQJpmdY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0aeba64fb26e4defa0842a942757144659c6e29f",
+        "rev": "102eb68ceecbbd32ab1906a53ef5a7269dc9794a",
         "type": "github"
       },
       "original": {
@@ -357,6 +373,7 @@
     },
     "root": {
       "inputs": {
+        "awesome-freedesktop": "awesome-freedesktop",
         "home-manager": "home-manager",
         "nix-doom-emacs": "nix-doom-emacs",
         "nixpkgs": "nixpkgs_3"

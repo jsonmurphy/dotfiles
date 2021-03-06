@@ -9,7 +9,7 @@ in
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = ''
-    	experimental-features = nix-command flakes
+      experimental-features = nix-command flakes
     '';
   };
 
@@ -32,6 +32,7 @@ in
     font-awesome
     terminus_font
     roboto
+    hasklig
   ];
 
   networking.dhcpcd.enable = false;
@@ -63,6 +64,21 @@ in
   # Don't allow emergency mode, because we don't have a console.
   systemd.enableEmergencyMode = false;
 
+  security.pam.loginLimits = [{
+    domain = "*";
+    item = "nofile";
+    type = "soft";
+    value = "20000";
+  }];
+
   services.xserver.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   services.xserver.windowManager.awesome.enable = true;
+  services.hydra = {
+    enable = true;
+    hydraURL = "http://localhost:3000";
+    notificationSender = "hydra@localhost";
+    buildMachinesFiles = [];
+    useSubstitutes = true;
+  };
 }

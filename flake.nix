@@ -3,9 +3,13 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     nix-doom-emacs.url = "github:vlaci/nix-doom-emacs";
+    awesome-freedesktop = {
+      url = "github:lcpz/awesome-freedesktop";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs }: {
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, awesome-freedesktop }: {
 
     nixosConfigurations.valhalla = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -21,7 +25,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.pedantic = import ./home.nix {
-            inherit nix-doom-emacs builtins;
+            inherit nix-doom-emacs awesome-freedesktop;
           };
         }
       ];
