@@ -1,4 +1,5 @@
 (setq doom-theme 'doom-nord)
+(setq debug-on-error t)
 
 (setq doom-leader-key ","
       doom-localleader-key "; ;")
@@ -34,7 +35,6 @@
 
 (setq dap-utils-extension-path "~/.emacs.d/.extentions")
 (use-package! dap-mode
-  :ensure
   :config
   (dap-ui-mode)
   (dap-ui-controls-mode 1)
@@ -53,8 +53,24 @@
          :target nil
          :cwd nil)))
 
-(add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
-(lsp-register-client
- (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
-                  :major-modes '(nix-mode)
-                  :server-id 'nix))
+(use-package! nix-mode
+  :config
+  (require 'nix)
+  (require 'nix-search)
+
+  (defun nix-build (&optional file attr)
+    "Run nix-build in a compilation buffer.
+FILE the file to parse.
+ATTR the attribute to build."
+    (interactive (list (nix-read-file) nil))
+    (unless attr (setq attr (nix-read-attr file)))
+
+    (setq compile-command (format "%s %s -A '%s'" nix-build-executable
+                                  file attr))
+    (setq-default compilation-directory default-directory)
+    (compilation-start compile-command nil
+                       (apply-partially (lambda (attr _)
+                                          (format "*nix-build*<%s>" attr))
+                                        attr)))
+
+  (provide 'nix-build))

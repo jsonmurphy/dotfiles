@@ -1,0 +1,49 @@
+" General
+imap ii <Esc>
+map ,w :action SaveAll<CR>:action Hotswap<CR>
+map ,W :action SaveAll<CR>:action :cursive.repl.actions/load-file<CR>:action :cursive.repl.actions/switch-namespace<CR>
+map ,e :action RecentFiles<CR>
+map ff :action GotoFile<CR>
+map ,k :action CloseContent<CR>
+map ,c :action VimFileSaveClose<CR>
+map ,q :action HideAllWindows<CR>
+map ,Q :action Exit<CR>
+map ,a :action RenameElement<CR>
+map ,A :action ShowUsages<CR>
+map ,` :action ToggleFullScreen<CR>
+map ,~ :action UpdateCopyright<CR>
+map ,r :action Debug<CR>
+map ,R :action Run<CR>
+map ,z :action ShowIntentionActions<CR>
+map ,Z :action NewScratchFile<CR>
+map \| :action UnsplitAll<CR>
+map ,2 :action VimWindowSplitHorizontal<CR>
+map \\\\ :action VimWindowSplitVertical<CR>
+map ,4 :action NewElement<CR>
+map ,5 :action Generate<CR>
+map ,6 :action ChooseRunConfiguration<CR>
+map ,7 :action editRunConfigurations<CR>
+map ;; :action VimWindowNext<CR>
+
+" Clojure
+map ,f :action :cursive.actions.paredit/slurp-forwards<CR>
+map ,F :action :cursive.actions.paredit/slurp-backwards<CR>
+map ,g :action :cursive.actions.paredit/barf-forwards<CR>
+map ,G :action :cursive.actions.paredit/barf-backwards<CR>
+map ,O :action :cursive.actions.paredit/split<CR>
+map ,t :action :cursive.actions.paredit/thread-form<CR>
+map ,T :action :cursive.actions.paredit/unthread-form<CR>
+" map ,R :action :cursive.actions.paredit/raise<CR>
+map ,j :action :cursive.actions.paredit/join<CR>
+map ,s :action :cursive.actions.paredit/split<CR>
+map ,S :action :cursive.actions.paredit/splice<CR>
+map ,x :action :cursive.actions.paredit/kill<CR>
+map ,X :action :cursive.actions.paredit/kill-sexp<CR>
+map ,( :action :cursive.actions.paredit/wrap-paren<CR>
+map ,{ :action :cursive.actions.paredit/wrap-curly<CR>
+map ,[ :action :cursive.actions.paredit/wrap-square<CR>
+map ," :action :cursive.actions.paredit/wrap-quotes<CR>
+map ,v :action ActivateREPLToolWindow<CR>
+map rt :action :cursive.repl.actions/run-top-sexp<CR>
+map rl :action :cursive.repl.actions/run-last-sexp<CR>
+map ,@ :action :cursive.extensions.clojure.core.typed.actions/type-check-ns<CR>

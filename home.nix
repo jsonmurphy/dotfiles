@@ -22,6 +22,9 @@
     set -gx DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
     direnv hook fish | source
     '';
+    shellAliases = {
+      denv = "echo 'use nix' > .envrc && direnv allow .";
+    };
   };
 
   imports = [ nix-doom-emacs.hmModule ];
@@ -30,18 +33,18 @@
     doomPrivateDir = ./doom.d;
   };
 
-  home.packages = [
-    pkgs.nix-prefetch-scripts
-    pkgs.nix-prefetch-github
+  home.packages = with pkgs; [
+    nix-prefetch-scripts
+    nix-prefetch-github
 
-    #pkgs.jdk11
-    pkgs.graalvm11-ce
-    pkgs.cfr
+    unzip
+    git
+    ripgrep
+    rnix-lsp
+    tree
+    nixfmt
 
-    pkgs.unzip
-    pkgs.git
-    pkgs.ripgrep
-    pkgs.rnix-lsp
+    jetbrains.idea-community
   ];
 
   home.file = {
@@ -49,6 +52,7 @@
     ".config/awesome/themes".source = ./config/awesome/themes;
     ".config/awesome/freedesktop".source = awesome-freedesktop;
     ".config/nvim/init.vim".source = ./config/nvim/init.vim;
+    ".ideavimrc".source = ./config/ideavimrc;
     # Convert to flake input once submodules support is available
     ".config/awesome/lain".source = pkgs.fetchFromGitHub {
       owner = "lcpz";

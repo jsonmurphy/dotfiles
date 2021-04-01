@@ -4,8 +4,8 @@
 
 ;;; Code:
 (package! nord-theme)
-(package! nix-mode)
 (package! direnv)
 (package! dap-mode)
+(package! fish-mode)
 
 ;;; packages.el ends here
