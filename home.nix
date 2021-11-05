@@ -43,6 +43,7 @@
     rnix-lsp
     tree
     nixfmt
+    texlive.combined.scheme-medium
 
     jetbrains.idea-community
   ];

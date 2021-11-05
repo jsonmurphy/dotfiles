@@ -74,4 +74,11 @@ in
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.windowManager.awesome.enable = true;
+  # services.hydra = {
+  #   enable = true;
+  #   hydraURL = "http://localhost:3000";
+  #   notificationSender = "hydra@localhost";
+  #   buildMachinesFiles = [];
+  #   useSubstitutes = true;
+  # };
 }

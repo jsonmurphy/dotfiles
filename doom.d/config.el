@@ -9,7 +9,7 @@
 (map! :leader "q" 'evil-window-delete)
 (map! :leader "Q" 'kill-emacs)
 (map! :leader "w" 'save-buffer)
-(map! :leader "v" 'vterm)
+(map! :leader "v" '+vterm/toggle)
 (map! :leader "e" 'counsel-recentf)
 (evil-define-key 'normal 'global (kbd "|") 'evil-window-vsplit)
 (evil-define-key 'normal 'global (kbd "_") 'evil-window-split)
