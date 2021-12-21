@@ -26,7 +26,9 @@
   :config
   (set-ligatures! 'rustic-mode
     :lambda "fn")
-  (map! :after rustic :map rustic-mode-map :localleader :n "d" #'dap-hydra))
+  (map! :after rustic :map rustic-mode-map :localleader :n "d" #'dap-hydra)
+  (map! :after rustic :map rustic-mode-map :localleader :n "r" #'lsp-rust-analyzer-reload-workspace)
+  (map! :after rustic :map rustic-mode-map :localleader :n "?" #'lsp-describe-thing-at-point))
 
 (advice-add 'lsp :before #'direnv-update-environment)
 (use-package! direnv
